@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService userService;
+    private final MemberService memberService;
 
     @GetMapping("login")
     public String login(){
@@ -22,7 +22,7 @@ public class MemberController {
     }
 
     @PostMapping("login")
-    public String login(@ModelAttribute Member user) {
+    public String login(@ModelAttribute Member member) {
         return null;
     }
 
@@ -32,9 +32,8 @@ public class MemberController {
     }
 
     @PostMapping("join")
-    public String join(@ModelAttribute Member user) {
-        System.out.println("여기는 회원가입");
-        int result = userService.join(user);
+    public String join(@ModelAttribute Member member) {
+        int result = memberService.join(member);
         return "redirect:/user/login";
     }
 

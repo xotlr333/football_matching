@@ -11,7 +11,11 @@ public class MemberRepository {
 
     private final SqlSessionTemplate sql;
 
-    public int save(Member user) {
-        return sql.insert("User.save", user);
+    public int save(Member member) {
+        return sql.insert("Member.save", member);
+    }
+
+    public Member findByLoginId(String loginId) {
+        return sql.selectOne("Member.findByLoginId", loginId);
     }
 }

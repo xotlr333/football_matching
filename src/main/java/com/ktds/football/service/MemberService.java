@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
-    private final MemberRepository userRepository;
+    private final MemberRepository memberRepository;
 
-    public int join(Member user) {
-        return userRepository.save(user);
+    public int join(Member member) {
+        return memberRepository.save(member);
+    }
+
+    public Member findByLoginId(String loginId) {
+        return memberRepository.findByLoginId(loginId);
     }
 }
