@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<div>
+    <img src="/images/logo.png" alt="로고">
+    <form name="join" action="/user/join" method="post">
+        <input type="text" placeholder="이름" name="name">
+        <input type="text" placeholder="로그인" name="loginId">
+        <input type="text" placeholder="비밀번호" name="password">
+        <input type="text" placeholder="비밀번호 확인">
+        <button th:onclick="() -> document.join.submit()">회원가입</button>
+    </form>
+
+</div>
+</body>
+</html>
