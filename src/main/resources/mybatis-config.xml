@@ -4,6 +4,6 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias type="com.ktds.football.dto.User" alias="user" />
+        <typeAlias type="com.ktds.football.dto.Member" alias="member" />
     </typeAliases>
 </configuration>

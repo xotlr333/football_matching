@@ -1,17 +1,17 @@
 package com.ktds.football.service;
 
-import com.ktds.football.dto.User;
-import com.ktds.football.repository.UserRepository;
+import com.ktds.football.dto.Member;
+import com.ktds.football.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository userRepository;
 
-    public int join(User user) {
+    public int join(Member user) {
         return userRepository.save(user);
     }
 }

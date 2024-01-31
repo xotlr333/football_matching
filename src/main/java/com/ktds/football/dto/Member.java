@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class User {
+public class Member {
 
     private Long id;
     private String name;
