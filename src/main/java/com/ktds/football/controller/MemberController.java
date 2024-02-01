@@ -2,12 +2,13 @@ package com.ktds.football.controller;
 
 import com.ktds.football.dto.Member;
 import com.ktds.football.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("user")
@@ -22,8 +23,22 @@ public class MemberController {
     }
 
     @PostMapping("login")
-    public String login(@ModelAttribute Member member) {
-        return null;
+    public String login(@ModelAttribute Member member, HttpServletRequest request) {
+
+        Member findMember = memberService.findByLoginId(member.getLoginId());
+
+//        HttpSession session = request.getSession();
+//        session.setAttribute("memberId", findMember.getId());
+
+        return "login";
+    }
+
+    @PostMapping("login/check")
+    public @ResponseBody Member loginCheck(@RequestBody Member member) {
+
+        Member findMember = memberService.findByLoginId(member.getLoginId());
+
+        return findMember;
     }
 
     @GetMapping("join")
