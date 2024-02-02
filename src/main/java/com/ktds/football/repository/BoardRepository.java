@@ -16,4 +16,8 @@ public class BoardRepository {
     public List<Post> findAll() {
         return sql.selectList("Board.findAll");
     }
+
+    public Post findById(Long postId) {
+        return sql.selectOne("Board.findById", postId);
+    }
 }

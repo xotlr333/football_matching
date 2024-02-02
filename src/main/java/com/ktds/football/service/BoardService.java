@@ -16,4 +16,8 @@ public class BoardService {
     public List<Post> findAll() {
         return boardRepository.findAll();
     }
+
+    public Post findById(Long postId) {
+        return boardRepository.findById(postId);
+    }
 }
