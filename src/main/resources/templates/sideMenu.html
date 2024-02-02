@@ -7,10 +7,12 @@
 <body>
 <div th:fragment="sideMenu">
     <!--사이드 메뉴-->
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4">Sidebar</span>
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 260px; height: 100%; border-radius: 20px;">
+        <a href="/board" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <!--<svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>-->
+            <span class="fs-4">
+                <img src="/images/logo_white.png" alt="로고" style="width: 100%; margin-top: 10px; margin-bottom: 10px">
+            </span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -62,4 +64,11 @@
     </div>
 </div>
 </body>
+<style>
+    .sidemenu-container {
+        width: 260px;
+        height: 100%;
+        border-radius: 20px;
+    }
+</style>
 </html>
