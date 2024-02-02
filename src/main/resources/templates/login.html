@@ -12,7 +12,7 @@
     <div class="login_box">
         <img src="/images/logo.png" alt="로고">
         <form name="login" action="/user/login" method="post">
-            <input type="text" class="form-control input" placeholder="로그인" th:name="loginId" th:id="loginId">
+            <input type="text" class="form-control input" placeholder="아이디" th:name="loginId" th:id="loginId">
             <input type="text" class="form-control input" placeholder="비밀번호" th:name="password" th:id="password">
         </form>
         <button type="button" class="btn btn-secondary button" th:onclick="loginCheck()">로그인</button>
@@ -54,10 +54,13 @@
 <script>
 
     const loginCheck = () => {
+
+        if(!validateForm()) {
+            return;
+        }
+
         const loginId = document.getElementById("loginId").value;
         const password = document.getElementById("password").value;
-        console.log("loginId : " + loginId);
-        console.log("password : " + password);
 
         $.ajax({
             type: "post",
@@ -85,6 +88,18 @@
                 alert("일시적으로 오류가 발생했습니다. \n관리자에게 문의하세요.");
             }
         });
+    }
+
+    const validateForm = () => {
+        const loginId = document.getElementById('loginId').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if ( loginId == null || loginId === "" || password == null || password === "" ) {
+            alert('모든 입력 항목을 채워주세요.');
+            return false;
+        }
+
+        return true;
     }
 </script>
 </html>
