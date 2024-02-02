@@ -39,12 +39,19 @@
             }),
             dataType: "json",
             success: function(result) {
-                console.log("작성성공");
-                document.login.submit();
+                // console.log("작성성공");
+                // console.log((result));
+
+                if (result === true) {
+                    document.login.submit();
+                } else {
+                    alert("아이디 또는 비밀번호를 잘못 입력했습니다.\n" +
+                        "입력하신 내용을 다시 확인해주세요.");
+                }
             },
             error: function(error) {
-                console.log(error)
-                console.log("실패");
+                console.error(error)
+                alert("일시적으로 오류가 발생했습니다. \n관리자에게 문의하세요.");
             }
         });
     }

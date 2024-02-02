@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("user")
 @RequiredArgsConstructor
@@ -27,18 +29,26 @@ public class MemberController {
 
         Member findMember = memberService.findByLoginId(member.getLoginId());
 
-//        HttpSession session = request.getSession();
-//        session.setAttribute("memberId", findMember.getId());
+        HttpSession session = request.getSession();
+        session.setAttribute("memberId", findMember.getId());
 
         return "login";
     }
 
     @PostMapping("login/check")
-    public @ResponseBody Member loginCheck(@RequestBody Member member) {
+    public @ResponseBody boolean loginCheck(@RequestBody Member member) {
 
         Member findMember = memberService.findByLoginId(member.getLoginId());
 
-        return findMember;
+        if(findMember == null) {
+            return false;
+        }
+
+        if(findMember.getPassword().equals(member.getPassword())) {
+            return true;
+        }
+
+        return false;
     }
 
     @GetMapping("join")
