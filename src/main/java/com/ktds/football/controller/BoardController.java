@@ -36,7 +36,6 @@ public class BoardController {
 
         model.addAttribute("post", findPost);
 
-
         return "detail";
     }
 
