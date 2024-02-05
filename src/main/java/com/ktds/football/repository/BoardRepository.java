@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,5 +20,13 @@ public class BoardRepository {
 
     public Post findById(Long postId) {
         return sql.selectOne("Board.findById", postId);
+    }
+
+    public List<Post> findPage(Map<String, Integer> pageMap) {
+        return sql.selectList("Board.findPage", pageMap);
+    }
+
+    public int findAllCount() {
+        return sql.selectOne("Board.findAllCount");
     }
 }

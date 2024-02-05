@@ -10,4 +10,12 @@
     <select id="findById"  parameterType="Long" resultType="post">
         select * from posts where id = #{postId} order by id
     </select>
+
+    <select id="findPage" parameterType="java.util.Map" resultType="post">
+        select * from posts order by id limit #{startPostNum}, #{perPage}
+    </select>
+
+    <select id="findAllCount" resultType="Integer">
+        select count(*) from posts
+    </select>
 </mapper>

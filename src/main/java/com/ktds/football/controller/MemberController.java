@@ -32,7 +32,7 @@ public class MemberController {
         HttpSession session = request.getSession();
         session.setAttribute("memberId", findMember.getId());
 
-        return "list";
+        return "redirect:/board";
     }
 
     @PostMapping("login/check")
