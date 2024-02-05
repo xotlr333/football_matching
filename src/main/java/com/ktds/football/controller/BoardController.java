@@ -31,6 +31,8 @@ public class BoardController {
 
         System.out.println("startPage : " + paging.getStartPage());
         System.out.println("endPage : " + paging.getEndPage());
+        System.out.println("maxPage : " + paging.getMaxPage());
+        System.out.println("currentPage : " + paging.getCurrentPage());
 
         model.addAttribute("postList", postList);
         model.addAttribute("paging", paging);

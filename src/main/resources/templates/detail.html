@@ -11,12 +11,34 @@
         <div th:replace="sideMenu :: sideMenu"></div>
 
         <div class="content-container">
-            <div>
-                <div th:text="${post.id}"></div>
-                <div th:text="${post.title}"></div>
-                <div th:text="${post.content}"></div>
-                <div th:text="${post.gameDate}"></div>
+            <div class="title-container">
+                <span th:text="${post.title}"></span>
             </div>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>주소</th>
+                    <td>주소입니다용</td>
+                </tr>
+                <tr>
+                    <th>인원</th>
+                    <td>10명</td>
+                </tr>
+                <tr>
+                    <th>경기일정</th>
+                    <td>2024-10-11 10:14</td>
+                </tr>
+                <tr>
+                    <th>실력 수준</th>
+                    <td>상</td>
+                </tr>
+            </table>
+
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">추가정보 및 팀소개</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10">내용입니다용</textarea>
+            </div>
+
 
             <div class="button-container">
                 <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
@@ -45,12 +67,30 @@
         gap: 30px;
     }
 
+    .title-container {
+        font-size: 30pt;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        background: #dee2e6;
+        padding: 15px;
+        margin-bottom: 35px;
+    }
+
+    .table {
+        margin-bottom: 35px;
+    }
+
     .content-container {
         width: 100%;
         padding: 15px;
         border: 1px solid #adb5bd;
         border-radius: 20px;
         position: relative;
+    }
+
+    .form-label {
+        font-weight: 700;
+        font-size: 20px;
     }
 
     .button-container {

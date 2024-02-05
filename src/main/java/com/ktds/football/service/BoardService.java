@@ -49,7 +49,7 @@ public class BoardService {
         int endPage = startPage + PER_SCREEN - 1;
         if(endPage > pageMax) {
             endPage = pageMax;
-            startPage = endPage - PER_SCREEN + 1;
+            startPage = Math.max(endPage - PER_SCREEN + 1, 1);
         }
 
         PageDTO pageDTO = new PageDTO();
