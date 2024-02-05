@@ -16,15 +16,17 @@
         <!--테이블-->
         <div class="table-container">
             <table class="table table-hover">
-                <tr>
+                <tr align="center" style="pointer-events: none;">
                     <th>제목</th>
-                    <th>경기날짜</th>
+                    <th width="200">경기날짜</th>
                 </tr>
 
-                <tr th:each="post : ${postList}">
+                <th:block  th:each="post : ${postList}">
+                <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id})}'|">
                     <td th:text="${post.title}"></td>
-                    <td th:text="${#temporals.format(post.gameDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td align="center" th:text="${#temporals.format(post.gameDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
+                </th:block>
             </table>
 
             <!--페이지네이션-->
@@ -34,7 +36,7 @@
                         <a class="page-link" th:if="${paging.currentPage != paging.startPage}" th:href="@{/board(page=${paging.currentPage}-1)}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
-                        <span class="page-link" th:if="${paging.currentPage == paging.startPage}" aria-label="Previous">
+                        <span class="page-link disabled" th:unless="${paging.currentPage != paging.startPage}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </span>
                     </li>
@@ -46,14 +48,14 @@
                         <a class="page-link" th:if="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1)}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
-                        <span class="page-link" th:if="${paging.currentPage == paging.endPage}" aria-label="Next">
+                        <a class="page-link disabled" th:unless="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1)}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
-                        </span>
+                        </a>
                     </li>
                 </ul>
             </nav>
 
-            <div>
+            <div class="button-container">
                 <button type="button" class="btn btn-outline-secondary">
                 <i class="bi bi-plus-lg"></i>글생성</button>
             </div>
@@ -64,6 +66,7 @@
 </body>
 
 <style>
+
     .container {
         display: flex;
         height: 100vh;
@@ -95,6 +98,14 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    .button-container {
+        position: absolute;
+        bottom: 45px;
+        left: 60px;
+        transform: translate(-50%, -50%);
+    }
+
 </style>
 
 </html>
