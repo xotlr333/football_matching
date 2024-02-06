@@ -36,7 +36,6 @@ public class BoardController {
     public String findById(@PathVariable(name = "postId") Long postId, Model model) {
 
         Post findPost = boardService.findById(postId);
-        System.out.println(findPost.getId());
 
         model.addAttribute("post", findPost);
 
@@ -52,20 +51,35 @@ public class BoardController {
     @PostMapping("add")
     public String add(@ModelAttribute Post post) {
 
-        System.out.println("address : " + post.getAddress());
-        System.out.println("people : " + post.getPeople());
-        System.out.println("skill : " + post.getSkill());
-        System.out.println("content : " + post.getContent());
-        System.out.println("title : " + post.getTitle());
+        // TODO : 아이디 매핑
         post.setMemberId(1L);
         post.setCategoryId(1L);
         post.setStatus("진행중");
-
 
         boardService.add(post);
 
         return "redirect:/board";
     }
 
+    @GetMapping("update/{postId}")
+    public String update(@PathVariable(name = "postId") Long postId, Model model) {
+
+        Post findPost = boardService.findById(postId);
+
+        model.addAttribute("post", findPost);
+
+        return "update";
+    }
+
+    @PostMapping("update/{postId}")
+    public String update(
+            @PathVariable(name = "postId") Long postId,
+            @ModelAttribute Post post) {
+
+        boardService.update(post);
+
+
+        return "redirect:/board/detail/" + postId;
+    }
 
 }

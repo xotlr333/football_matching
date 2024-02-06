@@ -69,4 +69,8 @@ public class BoardService {
     public void add(Post post) {
         boardRepository.add(post);
     }
+
+    public void update(Post post) {
+        boardRepository.update(post);
+    }
 }

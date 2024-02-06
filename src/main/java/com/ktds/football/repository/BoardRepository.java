@@ -33,4 +33,8 @@ public class BoardRepository {
     public void add(Post post) {
         sql.insert("Board.add", post);
     }
+
+    public void update(Post post) {
+        sql.update("Board.update", post);
+    }
 }

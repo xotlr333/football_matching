@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <th>경기일정</th>
-                    <td th:text="${post.gameDate}"></td>
+                    <td th:text="${#temporals.format(post.gameDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
                 <tr>
                     <th>실력 수준</th>
@@ -47,7 +47,7 @@
             <div class="button-container">
                 <div>
                     <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
-                    <button type="button" class="btn btn-outline-success" >수정</button>
+                    <button type="button" class="btn btn-outline-success" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
                     <button type="button" class="btn btn-outline-danger" >삭제</button>
                 </div>
                 <div>

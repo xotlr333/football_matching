@@ -23,4 +23,12 @@
         insert into posts(category_id, member_id, title, content, address, people, skill, game_date, position, status)
         values(#{categoryId}, #{memberId}, #{title}, #{content}, #{address}, #{people}, #{skill}, #{gameDate}, #{position}, #{status})
     </insert>
+
+    <update id="update" parameterType="post">
+        update posts set
+        category_id = #{categoryId}, title = #{title}, content = #{content}
+        , address = #{address}, people = #{people}, skill = #{skill}, game_date = #{gameDate}
+        , position = #{position}, status = #{status}
+        where id = #{id}
+    </update>
 </mapper>
