@@ -11,13 +11,13 @@
         <div th:replace="sideMenu :: sideMenu"></div>
 
         <div class="content-container">
-            <div class="title-container">
-                <span th:text="${post.title}"></span>
+            <div class="title-container" >
+                <span class="d-block text-truncate" style="max-width: 720px;" data-bs-toggle="tooltip" th:data-bs-title="${post.title}" th:text="${post.title}"></span>
             </div>
 
             <table class="table table-striped">
                 <tr>
-                    <th>주소</th>
+                    <th width="180px">주소</th>
                     <td th:text="${post.address}"></td>
                 </tr>
                 <tr>
@@ -60,7 +60,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
-
 <style>
     .container {
         display: flex;
@@ -113,4 +112,8 @@
     }
 
 </style>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 </html>

@@ -18,4 +18,9 @@
     <select id="findAllCount" resultType="Integer">
         select count(*) from posts
     </select>
+
+    <insert id="add" parameterType="post">
+        insert into posts(category_id, member_id, title, content, address, people, skill, game_date, position, status)
+        values(#{categoryId}, #{memberId}, #{title}, #{content}, #{address}, #{people}, #{skill}, #{gameDate}, #{position}, #{status})
+    </insert>
 </mapper>

@@ -29,4 +29,8 @@ public class BoardRepository {
     public int findAllCount() {
         return sql.selectOne("Board.findAllCount");
     }
+
+    public void add(Post post) {
+        sql.insert("Board.add", post);
+    }
 }

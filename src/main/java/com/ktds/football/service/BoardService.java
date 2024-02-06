@@ -65,4 +65,8 @@ public class BoardService {
     public int findAllCount() {
         return boardRepository.findAllCount();
     }
+
+    public void add(Post post) {
+        boardRepository.add(post);
+    }
 }

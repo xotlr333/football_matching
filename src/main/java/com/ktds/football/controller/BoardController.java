@@ -7,10 +7,7 @@ import com.ktds.football.dto.Post;
 import com.ktds.football.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,6 +47,24 @@ public class BoardController {
     @GetMapping("add")
     public String add(){
         return "add";
+    }
+
+    @PostMapping("add")
+    public String add(@ModelAttribute Post post) {
+
+        System.out.println("address : " + post.getAddress());
+        System.out.println("people : " + post.getPeople());
+        System.out.println("skill : " + post.getSkill());
+        System.out.println("content : " + post.getContent());
+        System.out.println("title : " + post.getTitle());
+        post.setMemberId(1L);
+        post.setCategoryId(1L);
+        post.setStatus("진행중");
+
+
+        boardService.add(post);
+
+        return "redirect:/board";
     }
 
 
