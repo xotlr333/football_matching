@@ -29,11 +29,6 @@ public class BoardController {
         List<Post> postList = boardService.findPage(currentPage);
         PageDTO paging = boardService.pagingParam(currentPage);
 
-        System.out.println("startPage : " + paging.getStartPage());
-        System.out.println("endPage : " + paging.getEndPage());
-        System.out.println("maxPage : " + paging.getMaxPage());
-        System.out.println("currentPage : " + paging.getCurrentPage());
-
         model.addAttribute("postList", postList);
         model.addAttribute("paging", paging);
 
@@ -41,13 +36,20 @@ public class BoardController {
     }
 
     @GetMapping("detail/{postId}")
-    public String findById(@PathVariable Long postId, Model model) {
+    public String findById(@PathVariable(name = "postId") Long postId, Model model) {
 
         Post findPost = boardService.findById(postId);
+        System.out.println(findPost.getId());
 
         model.addAttribute("post", findPost);
 
         return "detail";
+    }
+
+
+    @GetMapping("add")
+    public String add(){
+        return "add";
     }
 
 
