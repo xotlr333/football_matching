@@ -50,19 +50,18 @@
         </div>
     </div>
 
-<!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
-<!--    <script>-->
-<!--        $(document).ready(function(){-->
-<!--            $(".nav-link").click(function(){-->
-<!--                alert("동작해!!!")-->
-<!--                // 현재 active 클래스를 가진 요소의 클래스를 제거-->
-<!--                $(".nav-link.active").removeClass("active");-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".nav-link").click(function(){
+                // 현재 active 클래스를 가진 요소의 클래스를 제거
+                $(".nav-link.active").removeClass("active");
 
-<!--                // 클릭한 요소에 active 클래스 추가-->
-<!--                $(this).addClass("active");-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
+                // 클릭한 요소에 active 클래스 추가
+                $(this).addClass("active");
+            });
+        });
+    </script>
     <style>
         .nav-link:hover {
             background: #0d6efd;

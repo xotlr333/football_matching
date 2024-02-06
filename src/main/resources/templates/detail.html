@@ -18,31 +18,43 @@
             <table class="table table-striped">
                 <tr>
                     <th>주소</th>
-                    <td>주소입니다용</td>
+                    <td th:text="${post.address}"></td>
                 </tr>
                 <tr>
                     <th>인원</th>
-                    <td>10명</td>
+                    <td th:text="${post.people}"></td>
                 </tr>
                 <tr>
                     <th>경기일정</th>
-                    <td>2024-10-11 10:14</td>
+                    <td th:text="${post.gameDate}"></td>
                 </tr>
                 <tr>
                     <th>실력 수준</th>
-                    <td>상</td>
+                    <td th:text="${post.skill}"></td>
+                </tr>
+                <tr>
+                    <th>원하는 포지션</th>
+                    <td th:text="${post.position}"></td>
                 </tr>
             </table>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">추가정보 및 팀소개</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10">내용입니다용</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" th:text="${post.content}" readonly></textarea>
             </div>
 
 
             <div class="button-container">
-                <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
+                    <button type="button" class="btn btn-outline-success" >수정</button>
+                    <button type="button" class="btn btn-outline-danger" >삭제</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-primary" >신청</button>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -94,10 +106,10 @@
     }
 
     .button-container {
-        position: absolute;
-        bottom: 45px;
-        left: 60px;
-        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
     }
 
 </style>
