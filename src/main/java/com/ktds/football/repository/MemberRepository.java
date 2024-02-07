@@ -20,4 +20,5 @@ public class MemberRepository {
     public Member findByLoginId(String loginId) {
         return sql.selectOne("Member.findByLoginId", loginId);
     }
+
 }

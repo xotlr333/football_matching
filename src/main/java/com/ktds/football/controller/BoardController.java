@@ -3,7 +3,6 @@ package com.ktds.football.controller;
 import com.ktds.football.dto.Category;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.service.CategoryService;
-import lombok.Getter;
 import org.springframework.ui.Model;
 import com.ktds.football.dto.Post;
 import com.ktds.football.service.BoardService;
@@ -22,9 +21,12 @@ public class BoardController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public String findPage(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
+    public String findPage(
+            @RequestParam(name = "page", defaultValue = "1") int currentPage
+//            , @SessionAttribute(name = "memberId", required = false) Long memberId
+            , Model model) {
 
-//        List<Post> postList = boardService.findAll();
+//        System.out.println("loginMemberId : " + memberId);
 
         List<Post> postList = boardService.findPage(currentPage);
         PageDTO paging = boardService.pagingParam(currentPage);
@@ -62,8 +64,6 @@ public class BoardController {
     public String add(@ModelAttribute Post post) {
 
         // TODO : 아이디 매핑
-        post.setMemberId(1L);
-        post.setCategoryId(1L);
         post.setStatus("진행중");
 
         boardService.add(post);

@@ -18,4 +18,5 @@ public class MemberService {
     public Member findByLoginId(String loginId) {
         return memberRepository.findByLoginId(loginId);
     }
+
 }

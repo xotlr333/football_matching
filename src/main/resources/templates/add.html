@@ -13,15 +13,10 @@
 
         <div class="content-container">
             <form class="row g-3 needs-validation" action="/board/add" method="post">
+                <input type="hidden" name="memberId" th:value="${member.id}">
                 <div>
                     <label for="title" class="form-label">제목</label>
                     <input type="text" class="form-control" id="title" name="title" required>
-<!--                    <div class="valid-feedback">-->
-<!--                        Looks good!-->
-<!--                    </div>-->
-<!--                    <div class="invalid-feedback">-->
-<!--                        필수 항목입니다.-->
-<!--                    </div>-->
                 </div>
                 <div>
                     <label for="category" class="form-label">지역</label>

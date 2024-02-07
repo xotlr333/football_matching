@@ -5,12 +5,9 @@ import com.ktds.football.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @Controller
 @RequestMapping("user")
@@ -30,7 +27,7 @@ public class MemberController {
         Member findMember = memberService.findByLoginId(member.getLoginId());
 
         HttpSession session = request.getSession();
-        session.setAttribute("memberId", findMember.getId());
+        session.setAttribute("memberInfo", findMember);
 
         return "redirect:/board";
     }
