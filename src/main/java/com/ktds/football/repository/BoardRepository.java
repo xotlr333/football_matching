@@ -37,4 +37,8 @@ public class BoardRepository {
     public void update(Post post) {
         sql.update("Board.update", post);
     }
+
+    public void delete(Long postId) {
+        sql.delete("Board.delete", postId);
+    }
 }

@@ -73,4 +73,8 @@ public class BoardService {
     public void update(Post post) {
         boardRepository.update(post);
     }
+
+    public void delete(Long postId) {
+        boardRepository.delete(postId);
+    }
 }
