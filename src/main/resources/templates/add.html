@@ -25,10 +25,8 @@
                 </div>
                 <div>
                     <label for="category" class="form-label">지역</label>
-                    <select class="form-select" id="category" name="categoryId" required>
-                        <option selected value="1">성동구</option>
-                        <option value="2">종로구</option>
-                        <option value="3">강서구</option>
+                    <select class="form-select" id="category" name="categoryId"  required>
+                        <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.title}"></option>
                     </select>
                 </div>
                 <div>

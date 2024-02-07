@@ -23,9 +23,13 @@
                 <div>
                     <label for="category" class="form-label">지역</label>
                     <select class="form-select" id="category" name="categoryId" th:value="${post.categoryId}" required>
-                        <option selected value="1">성동구</option>
-                        <option value="2">종로구</option>
-                        <option value="3">강서구</option>
+                        <option th:each="category : ${categoryList}"
+                                th:value="${category.id}"
+                                th:text="${category.title}"
+                                th:selected="${category.id == post.categoryId}"></option>
+<!--                        <option selected value="1">성동구</option>-->
+<!--                        <option value="2">종로구</option>-->
+<!--                        <option value="3">강서구</option>-->
                     </select>
                 </div>
                 <div>

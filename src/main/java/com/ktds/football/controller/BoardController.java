@@ -1,6 +1,8 @@
 package com.ktds.football.controller;
 
+import com.ktds.football.dto.Category;
 import com.ktds.football.dto.PageDTO;
+import com.ktds.football.service.CategoryService;
 import lombok.Getter;
 import org.springframework.ui.Model;
 import com.ktds.football.dto.Post;
@@ -17,6 +19,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CategoryService categoryService;
 
     @GetMapping
     public String findPage(@RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
@@ -36,15 +39,22 @@ public class BoardController {
     public String findById(@PathVariable(name = "postId") Long postId, Model model) {
 
         Post findPost = boardService.findById(postId);
+        String categoryTitle = categoryService.findById(findPost.getCategoryId());
 
         model.addAttribute("post", findPost);
+        model.addAttribute("category", categoryTitle);
 
         return "detail";
     }
 
 
     @GetMapping("add")
-    public String add(){
+    public String add(Model model){
+
+        List<Category> categoryList = categoryService.findAll();
+
+        model.addAttribute("categoryList", categoryList);
+
         return "add";
     }
 
@@ -65,7 +75,9 @@ public class BoardController {
     public String update(@PathVariable(name = "postId") Long postId, Model model) {
 
         Post findPost = boardService.findById(postId);
+        List<Category> categoryList = categoryService.findAll();
 
+        model.addAttribute("categoryList", categoryList);
         model.addAttribute("post", findPost);
 
         return "update";
