@@ -14,11 +14,12 @@ public class AuthInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession(false);
         if(session == null) {
             response.sendRedirect(request.getContextPath() + "/user/login");
+            return false;
         }
-        else {
-            Member member = (Member) session.getAttribute("memberInfo");
-            request.setAttribute("member", member);
-        }
+
+        Member member = (Member) session.getAttribute("memberInfo");
+        request.setAttribute("member", member);
+
 
         return true;
     }
