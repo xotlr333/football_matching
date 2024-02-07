@@ -10,5 +10,6 @@
         <typeAlias type="com.ktds.football.dto.Member" alias="member" />
         <typeAlias type="com.ktds.football.dto.Post" alias="post" />
         <typeAlias type="com.ktds.football.dto.Category" alias="category" />
+        <typeAlias type="com.ktds.football.dto.Request" alias="request" />
     </typeAliases>
 </configuration>

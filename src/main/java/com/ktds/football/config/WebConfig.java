@@ -16,6 +16,6 @@ public class WebConfig implements WebMvcConfigurer {
                 // 모든 Path에 대해서 가로챌것이다.
                 // .addPathPatterns("/sample") // /sample경로에 대해서만 가로챌것이다.
                 .excludePathPatterns("/user/*") // /sample 경로에 대해서는 Interceptor 가로채지 않을것이다.
-                .addPathPatterns("/*", "/board/**");
+                .addPathPatterns("/*", "/board/**", "/request/**");
     }
 }
