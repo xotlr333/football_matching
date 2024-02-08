@@ -8,4 +8,11 @@
         values(#{postId}, #{memberId}, #{position}, #{status})
     </insert>
 
+    <select id="findPage" parameterType="java.util.Map" resultType="post">
+        select * from requests order by id limit #{startPostNum}, #{perPage}
+    </select>
+
+    <select id="findByMemberIdCount" parameterType="Long" resultType="Integer">
+        select count(*) from requests where member_id = #{memberId}
+    </select>
 </mapper>
