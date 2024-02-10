@@ -3,6 +3,8 @@ package com.ktds.football.service;
 
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.dto.Request;
+import com.ktds.football.dto.RequestRequestDTO;
+import com.ktds.football.dto.RequestResponseDTO;
 import com.ktds.football.repository.RequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,15 @@ public class RequestService {
         requestRepository.add(request);
     }
 
-    public List<Request> findPage(int currentPage) {
-        return requestRepository.findPage(pageService.findStartPage(currentPage));
+    public List<RequestResponseDTO> findPage(int currentPage, Long memberId) {
+
+        Map<String, Integer> map = pageService.findStartPage(currentPage);
+        RequestRequestDTO requestDTO = new RequestRequestDTO();
+        requestDTO.setMemberId(memberId);
+        requestDTO.setStartPostNum(map.get("startPostNum"));
+        requestDTO.setPerPage(map.get("perPage"));
+
+        return requestRepository.findPage(requestDTO);
     }
 
     public PageDTO pagingParam(int currentPage, Long memberId) {
@@ -31,5 +40,9 @@ public class RequestService {
         int findByMemberIdCount = requestRepository.findByMemberIdCount(memberId);
 
         return pageService.pagingParam(currentPage, findByMemberIdCount);
+    }
+
+    public void delete(Long requestId) {
+        requestRepository.delete(requestId);
     }
 }

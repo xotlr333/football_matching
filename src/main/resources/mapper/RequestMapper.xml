@@ -8,11 +8,25 @@
         values(#{postId}, #{memberId}, #{position}, #{status})
     </insert>
 
-    <select id="findPage" parameterType="java.util.Map" resultType="post">
-        select * from requests order by id limit #{startPostNum}, #{perPage}
+<!--    <select id="findPage" parameterType="java.util.Map" resultType="post">-->
+<!--        select * from requests order by id limit #{startPostNum}, #{perPage}-->
+<!--    </select>-->
+
+    <select id="findPage" parameterType="com.ktds.football.dto.RequestRequestDTO" resultType="com.ktds.football.dto.RequestResponseDTO">
+        select r.id, r.post_id, r.position, r.status
+             , p.title, p.game_date
+        from requests r
+        join posts p on p.id = r.post_id
+        where r.member_id = #{memberId}
+        order by r.id
+        limit #{startPostNum}, #{perPage};
     </select>
 
     <select id="findByMemberIdCount" parameterType="Long" resultType="Integer">
         select count(*) from requests where member_id = #{memberId}
     </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from requests where id = #{requestId}
+    </delete>
 </mapper>

@@ -4,6 +4,7 @@ import com.ktds.football.dto.Member;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.dto.Post;
 import com.ktds.football.dto.Request;
+import com.ktds.football.dto.RequestResponseDTO;
 import com.ktds.football.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -35,13 +36,22 @@ public class RequestController {
             , @SessionAttribute(name = "memberInfo", required = false) Member member
             , Model model) {
 
-        List<Request> requestList = requestService.findPage(currentPage);
+        List<RequestResponseDTO> requestList = requestService.findPage(currentPage, member.getId());
         PageDTO paging = requestService.pagingParam(currentPage, member.getId());
 
         model.addAttribute("requestList", requestList);
         model.addAttribute("paging", paging);
 
-        return "list";
+        return "requestList";
+    }
+
+    @GetMapping("delete/{requestId}")
+    public String delete(@PathVariable(name = "requestId") Long requestId){
+
+        requestService.delete(requestId);
+
+        return "redirect:/request";
+
     }
 
 

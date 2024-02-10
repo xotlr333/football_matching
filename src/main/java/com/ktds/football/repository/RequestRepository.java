@@ -1,6 +1,9 @@
 package com.ktds.football.repository;
 
 import com.ktds.football.dto.Request;
+import com.ktds.football.dto.RequestRequestDTO;
+import com.ktds.football.dto.RequestResponseDTO;
+
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,11 +21,15 @@ public class RequestRepository {
         sql.insert("Request.add", request);
     }
 
-    public List<Request> findPage(Map<String, Integer> pageMap) {
-        return sql.selectList("Request.findPage", pageMap);
+    public List<RequestResponseDTO> findPage(RequestRequestDTO requestDTO) {
+        return sql.selectList("Request.findPage", requestDTO);
     }
 
     public int findByMemberIdCount(Long memberId) {
         return sql.selectOne("Request.findByMemberIdCount", memberId);
+    }
+
+    public void delete(Long requestId) {
+        sql.delete("Request.delete", requestId);
     }
 }
