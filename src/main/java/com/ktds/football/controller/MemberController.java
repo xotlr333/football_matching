@@ -18,7 +18,7 @@ public class MemberController {
 
     @GetMapping("login")
     public String login(){
-        return "login";
+        return "member/login";
     }
 
     @PostMapping("login")
@@ -50,7 +50,7 @@ public class MemberController {
 
     @GetMapping("join")
     public String join() {
-        return "join";
+        return "member/join";
     }
 
     @PostMapping("join")

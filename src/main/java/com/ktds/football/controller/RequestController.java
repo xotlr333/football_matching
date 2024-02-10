@@ -2,7 +2,6 @@ package com.ktds.football.controller;
 
 import com.ktds.football.dto.Member;
 import com.ktds.football.dto.PageDTO;
-import com.ktds.football.dto.Post;
 import com.ktds.football.dto.Request;
 import com.ktds.football.dto.RequestResponseDTO;
 import com.ktds.football.service.RequestService;
@@ -42,7 +41,7 @@ public class RequestController {
         model.addAttribute("requestList", requestList);
         model.addAttribute("paging", paging);
 
-        return "requestList";
+        return "request/list";
     }
 
     @GetMapping("delete/{requestId}")

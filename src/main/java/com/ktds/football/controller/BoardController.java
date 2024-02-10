@@ -30,7 +30,7 @@ public class BoardController {
         model.addAttribute("postList", postList);
         model.addAttribute("paging", paging);
 
-        return "list";
+        return "board/list";
     }
 
     @GetMapping("detail/{postId}")
@@ -42,7 +42,7 @@ public class BoardController {
         model.addAttribute("post", findPost);
         model.addAttribute("category", categoryTitle);
 
-        return "detail";
+        return "board/detail";
     }
 
 
@@ -53,7 +53,7 @@ public class BoardController {
 
         model.addAttribute("categoryList", categoryList);
 
-        return "add";
+        return "board/add";
     }
 
     @PostMapping("add")
@@ -76,7 +76,7 @@ public class BoardController {
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("post", findPost);
 
-        return "update";
+        return "board/update";
     }
 
     @PostMapping("update/{postId}")

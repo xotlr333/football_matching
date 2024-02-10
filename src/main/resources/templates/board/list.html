@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="box">
-        <div th:replace="sideMenu :: sideMenu"></div>
+        <div th:replace="~{sideMenu :: sideMenu}"></div>
 
         <!--테이블-->
         <div class="table-container">
@@ -47,10 +47,10 @@
                         <li th:unless="${paging.currentPage == num}" class="page-item"><a class="page-link" th:href="@{/board(page=${num})}" th:text="${num}"></a></li>
                     </th:block>
                     <li class="page-item">
-                        <a class="page-link" th:if="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1)}" aria-label="Next">
+                        <a class="page-link" th:if="${paging.currentPage != paging.endPage}" th:href="@{/templates/board(page=${paging.currentPage}+1)}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
-                        <a class="page-link disabled" th:unless="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1)}" aria-label="Next">
+                        <a class="page-link disabled" th:unless="${paging.currentPage != paging.endPage}" th:href="@{/templates/board(page=${paging.currentPage}+1)}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
