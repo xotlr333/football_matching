@@ -22,11 +22,7 @@ public class BoardController {
 
     @GetMapping
     public String findPage(
-            @RequestParam(name = "page", defaultValue = "1") int currentPage
-//            , @SessionAttribute(name = "memberId", required = false) Long memberId
-            , Model model) {
-
-//        System.out.println("loginMemberId : " + memberId);
+            @RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
 
         List<Post> postList = boardService.findPage(currentPage);
         PageDTO paging = boardService.pagingParam(currentPage);

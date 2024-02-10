@@ -15,9 +15,10 @@ import java.util.Map;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final PageService pageService;
 
-    private final int PER_PAGE = 15; // 한 페이지당 게시글 갯수
-    private final int PER_SCREEN = 5; // 페이지네이션에서 보여줄 페이지 갯수
+    // private final int PER_PAGE = 15; // 한 페이지당 게시글 갯수
+    // private final int PER_SCREEN = 5; // 페이지네이션에서 보여줄 페이지 갯수
 
     public List<Post> findAll() {
         return boardRepository.findAll();
@@ -29,37 +30,42 @@ public class BoardService {
 
     public List<Post> findPage(int currentPage) {
 
-        int startPostNum = (currentPage - 1) * PER_PAGE;
-        int endPostNum = startPostNum + PER_PAGE;
+        // int startPostNum = (currentPage - 1) * PER_PAGE;
+        // int endPostNum = startPostNum + PER_PAGE;
+        //
+        // Map<String, Integer> pageMap = new HashMap<>();
+        // pageMap.put("startPostNum", startPostNum);
+        // pageMap.put("perPage", PER_PAGE);
+        //
+        // return boardRepository.findPage(pageMap);
 
-        Map<String, Integer> pageMap = new HashMap<>();
-        pageMap.put("startPostNum", startPostNum);
-        pageMap.put("perPage", PER_PAGE);
-
-        return boardRepository.findPage(pageMap);
+        return boardRepository.findPage(pageService.findStartPage(currentPage));
 
     }
 
     public PageDTO pagingParam(int currentPage) {
 
+        // int totalPostCount = findAllCount();
+        // int pageMax = totalPostCount % PER_PAGE > 0 ? (totalPostCount / PER_PAGE) + 1 : totalPostCount / PER_PAGE;
+        //
+        // int startPage = Math.max(1, currentPage - 2);
+        // int endPage = startPage + PER_SCREEN - 1;
+        // if(endPage > pageMax) {
+        //     endPage = Math.max(pageMax, 1);
+        //     startPage = Math.max(endPage - PER_SCREEN + 1, 1);
+        // }
+        //
+        // PageDTO pageDTO = new PageDTO();
+        // pageDTO.setCurrentPage(currentPage);
+        // pageDTO.setMaxPage(pageMax);
+        // pageDTO.setStartPage(startPage);
+        // pageDTO.setEndPage(endPage);
+        //
+        // return pageDTO;
+
         int totalPostCount = findAllCount();
-        int pageMax = totalPostCount % PER_PAGE > 0 ? (totalPostCount / PER_PAGE) + 1 : totalPostCount / PER_PAGE;
 
-        int startPage = Math.max(1, currentPage - 2);
-        int endPage = startPage + PER_SCREEN - 1;
-        if(endPage > pageMax) {
-            endPage = pageMax;
-            startPage = Math.max(endPage - PER_SCREEN + 1, 1);
-        }
-
-        PageDTO pageDTO = new PageDTO();
-        pageDTO.setCurrentPage(currentPage);
-        pageDTO.setMaxPage(pageMax);
-        pageDTO.setStartPage(startPage);
-        pageDTO.setEndPage(endPage);
-
-        return pageDTO;
-
+        return pageService.pagingParam(currentPage, totalPostCount);
     }
 
     public int findAllCount() {

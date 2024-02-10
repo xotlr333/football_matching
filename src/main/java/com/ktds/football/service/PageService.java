@@ -30,7 +30,7 @@ public class PageService {
         int startPage = Math.max(1, currentPage - 2);
         int endPage = startPage + PER_SCREEN - 1;
         if(endPage > pageMax) {
-            endPage = pageMax;
+            endPage = Math.max(pageMax, 1);
             startPage = Math.max(endPage - PER_SCREEN + 1, 1);
         }
 
