@@ -33,7 +33,7 @@
                         <td align="center" th:text="${#temporals.format(request.gameDate, 'yyyy-MM-dd HH:mm')}"></td>
                         <td align="center" th:text="${request.status}"></td>
                         <td align="center">
-                            <button type="button" class="btn btn-danger cancel-btn" th:onclick="|location.href='@{/request/delete/{id}(id = ${request.id})}'|">취소</button>
+                            <button type="button" class="btn btn-danger cancel-btn" th:onclick="requestDelete([[${request.id}]])">취소</button>
                         </td>
                     </tr>
                 </th:block>
@@ -120,6 +120,11 @@
     }
 </style>
 <script>
+    const requestDelete = (id) => {
+        if(confirm("정말 삭제하시겠습니까?")){
+            location.href = "/request/delete/" + id;
+        }
+    }
 
 </script>
 
