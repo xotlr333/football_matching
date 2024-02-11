@@ -39,8 +39,8 @@
                     <input type="password" class="form-control" id="changePasswordConfirm" name="changePasswordConfirm" required>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" type="button" th:onclick="goSubmit()">수정</button>
-                    <button class="btn btn-outline-danger" type="button">탈퇴</button>
+                    <button class="btn btn-outline-primary" type="button" th:onclick="goUpdate()">수정</button>
+                    <button class="btn btn-outline-danger" type="button" th:onclick="goDelete()">탈퇴</button>
                 </div>
             </form>
 
@@ -113,7 +113,7 @@
 </style>
 
 <script>
-    const goSubmit = () => {
+    const goUpdate = () => {
 
         const prePassword = document.getElementById("prePassword").value;
         const changePassword = document.getElementById("changePassword").value;
@@ -143,6 +143,37 @@
 
                 alert(text);
                 location.reload(true);
+
+            },
+            error: function(error) {
+                console.error(error)
+                alert("일시적으로 오류가 발생했습니다. \n관리자에게 문의하세요.");
+            }
+        });
+
+    }
+
+    const goDelete = () => {
+
+        if(!confirm("해당 회원으로 작성된 게시글, 문의글 등 모두 삭제됩니다.\n그래도 탈퇴를 진행하시겠습니까?")){
+            return;
+        }
+
+        $.ajax({
+            type: "get",
+            url: "/mypage/delete",
+            async : false,
+            dataType: "json",
+            success: function(result) {
+                const code = result.code;
+                const text = result.text;
+                if(code == 0) {
+                    alert(text);
+                    return;
+                }
+
+                alert(text);
+                location.href = "/user/login";
 
             },
             error: function(error) {

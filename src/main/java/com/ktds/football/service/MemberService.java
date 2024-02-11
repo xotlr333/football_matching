@@ -30,4 +30,9 @@ public class MemberService {
 	public void updatePassword(PasswordDTO passwordDTO) {
 		memberRepository.updatePassword(passwordDTO);
 	}
+
+	public void delete(Long id) {
+		memberRepository.delete(id);
+
+	}
 }

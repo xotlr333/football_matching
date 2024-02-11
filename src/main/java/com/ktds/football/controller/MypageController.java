@@ -17,6 +17,8 @@ import com.ktds.football.dto.CommonResponseDTO;
 import com.ktds.football.dto.PasswordDTO;
 import com.ktds.football.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -62,6 +64,24 @@ public class MypageController {
 		memberService.updatePassword(passwordDTO);
 		result.setCode(1);
 		result.setText("비밀번호 변경이 되었습니다.");
+
+		return result;
+	}
+
+	@GetMapping("delete")
+	@ResponseBody
+	public CommonResponseDTO delete(HttpServletRequest request, @SessionAttribute(name = "memberInfo") Member member) {
+		CommonResponseDTO result = new CommonResponseDTO();
+
+		memberService.delete(member.getId());
+
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+		}
+
+		result.setCode(1);
+		result.setText("탈퇴되었습니다.");
 
 		return result;
 	}

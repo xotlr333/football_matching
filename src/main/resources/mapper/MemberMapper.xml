@@ -19,4 +19,8 @@
     <update id="updatePassword" parameterType="com.ktds.football.dto.PasswordDTO">
         update members set password = #{changePassword} where id = #{memberId}
     </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from members where id = #{id}
+    </delete>
 </mapper>

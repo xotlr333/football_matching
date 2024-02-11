@@ -24,4 +24,8 @@ public class MemberRepository {
 	public void updatePassword(PasswordDTO passwordDTO) {
 		sql.update("Member.updatePassword", passwordDTO);
 	}
+
+	public void delete(Long id) {
+		sql.delete("Member.delete", id);
+	}
 }
