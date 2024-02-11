@@ -1,10 +1,10 @@
 package com.ktds.football.controller;
 
-import com.ktds.football.dto.Category;
+import com.ktds.football.domain.Category;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.service.CategoryService;
 import org.springframework.ui.Model;
-import com.ktds.football.dto.Post;
+import com.ktds.football.domain.Post;
 import com.ktds.football.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

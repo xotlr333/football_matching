@@ -1,6 +1,6 @@
 package com.ktds.football.service;
 
-import com.ktds.football.dto.Category;
+import com.ktds.football.domain.Category;
 import com.ktds.football.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.ktds.football.interceptor;
 
-import com.ktds.football.dto.Member;
+import com.ktds.football.domain.Member;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

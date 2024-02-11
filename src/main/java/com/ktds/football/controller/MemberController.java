@@ -1,6 +1,6 @@
 package com.ktds.football.controller;
 
-import com.ktds.football.dto.Member;
+import com.ktds.football.domain.Member;
 import com.ktds.football.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -55,6 +55,8 @@ public class MemberController {
 
     @PostMapping("join")
     public String join(@ModelAttribute Member member) {
+
+        // TODO : 아이디 중복 체크
         int result = memberService.join(member);
         return "redirect:/user/login";
     }

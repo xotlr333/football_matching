@@ -1,6 +1,6 @@
 package com.ktds.football.repository;
 
-import com.ktds.football.dto.Post;
+import com.ktds.football.domain.Post;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

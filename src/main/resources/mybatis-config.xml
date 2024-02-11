@@ -7,9 +7,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-        <typeAlias type="com.ktds.football.dto.Member" alias="member" />
-        <typeAlias type="com.ktds.football.dto.Post" alias="post" />
-        <typeAlias type="com.ktds.football.dto.Category" alias="category" />
-        <typeAlias type="com.ktds.football.dto.Request" alias="request" />
+        <typeAlias type="com.ktds.football.domain.Member" alias="member" />
+        <typeAlias type="com.ktds.football.domain.Post" alias="post" />
+        <typeAlias type="com.ktds.football.domain.Category" alias="category" />
+        <typeAlias type="com.ktds.football.domain.Request" alias="request" />
     </typeAliases>
 </configuration>

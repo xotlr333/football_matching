@@ -1,8 +1,8 @@
 package com.ktds.football.controller;
 
-import com.ktds.football.dto.Member;
+import com.ktds.football.domain.Member;
 import com.ktds.football.dto.PageDTO;
-import com.ktds.football.dto.Request;
+import com.ktds.football.domain.Request;
 import com.ktds.football.dto.RequestResponseDTO;
 import com.ktds.football.service.RequestService;
 import lombok.RequiredArgsConstructor;

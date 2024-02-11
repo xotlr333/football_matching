@@ -1,4 +1,4 @@
-package com.ktds.football.dto;
+package com.ktds.football.domain;
 
 
 import lombok.Getter;

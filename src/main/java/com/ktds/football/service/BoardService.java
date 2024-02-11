@@ -1,14 +1,12 @@
 package com.ktds.football.service;
 
 import com.ktds.football.dto.PageDTO;
-import com.ktds.football.dto.Post;
+import com.ktds.football.domain.Post;
 import com.ktds.football.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

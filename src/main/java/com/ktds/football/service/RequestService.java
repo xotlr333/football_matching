@@ -2,14 +2,13 @@ package com.ktds.football.service;
 
 
 import com.ktds.football.dto.PageDTO;
-import com.ktds.football.dto.Request;
+import com.ktds.football.domain.Request;
 import com.ktds.football.dto.RequestRequestDTO;
 import com.ktds.football.dto.RequestResponseDTO;
 import com.ktds.football.repository.RequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

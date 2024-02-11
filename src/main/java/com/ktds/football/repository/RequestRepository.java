@@ -1,6 +1,6 @@
 package com.ktds.football.repository;
 
-import com.ktds.football.dto.Request;
+import com.ktds.football.domain.Request;
 import com.ktds.football.dto.RequestRequestDTO;
 import com.ktds.football.dto.RequestResponseDTO;
 
@@ -9,7 +9,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor

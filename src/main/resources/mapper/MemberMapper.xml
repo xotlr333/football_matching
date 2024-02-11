@@ -15,4 +15,8 @@
         insert into members (name, login_id, password)
         values (#{name}, #{loginId}, #{password})
     </insert>
+
+    <update id="updatePassword" parameterType="com.ktds.football.dto.PasswordDTO">
+        update members set password = #{changePassword} where id = #{memberId}
+    </update>
 </mapper>
