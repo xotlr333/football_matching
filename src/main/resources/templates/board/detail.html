@@ -50,12 +50,12 @@
 
             <div class="button-container">
                 <div>
-                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
-                    <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
-                    <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">신청</button>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">신청</button>
+                    <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
+                    <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
                 </div>
             </div>
 

@@ -13,7 +13,7 @@
         <img src="/images/logo.png" alt="로고">
         <form name="login" action="/user/login" method="post">
             <input type="text" class="form-control input" placeholder="아이디" th:name="loginId" th:id="loginId">
-            <input type="text" class="form-control input" placeholder="비밀번호" th:name="password" th:id="password">
+            <input type="password" class="form-control input" placeholder="비밀번호" th:name="password" th:id="password">
         </form>
         <button type="button" class="btn btn-secondary button" th:onclick="loginCheck()">로그인</button>
         <button type="button" class="btn btn-secondary button" th:onclick="|location.href='@{/user/join}'|">회원가입</button>
