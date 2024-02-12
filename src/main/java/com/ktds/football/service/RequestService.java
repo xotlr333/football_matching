@@ -44,4 +44,30 @@ public class RequestService {
     public void delete(Long requestId) {
         requestRepository.delete(requestId);
     }
+
+    public List<RequestResponseDTO> findPageOfPost(int currentPage, Long postId) {
+
+        Map<String, Integer> map = pageService.findStartPage(currentPage);
+        RequestRequestDTO requestDTO = new RequestRequestDTO();
+        requestDTO.setPostId(postId);
+        requestDTO.setStartPostNum(map.get("startPostNum"));
+        requestDTO.setPerPage(map.get("perPage"));
+
+        return requestRepository.findPageOfPost(requestDTO);
+    }
+
+    public PageDTO pagingParamOfPost(int currentPage, Long postId) {
+
+        int findByMemberIdCount = requestRepository.findByPostIdCount(postId);
+
+        return pageService.pagingParam(currentPage, findByMemberIdCount);
+    }
+
+    public void refuse(Long id) {
+        requestRepository.refuse(id);
+    }
+
+    public int findApproveByPostIdCount(Long postId) {
+        return requestRepository.findApproveByPostIdCount(postId);
+    }
 }

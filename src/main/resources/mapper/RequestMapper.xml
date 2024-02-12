@@ -29,4 +29,26 @@
     <delete id="delete" parameterType="Long">
         delete from requests where id = #{requestId}
     </delete>
+
+    <select id="findPageOfPost" parameterType="com.ktds.football.dto.RequestRequestDTO" resultType="com.ktds.football.dto.RequestResponseDTO">
+        select r.id, r.post_id, r.position
+             , m.login_id
+        from requests r
+                 join members m on m.id = r.member_id
+        where r.post_id = #{postId} and r.status != 'REFUSE'
+        order by r.id
+        limit #{startPostNum}, #{perPage};
+    </select>
+
+    <select id="findByPostIdCount" parameterType="Long" resultType="Integer">
+        select count(*) from requests where post_id = #{postId}
+    </select>
+
+    <update id="refuse" parameterType="Long">
+        update requests set status = 'REFUSE' where id = #{id}
+    </update>
+
+    <select id="findApproveByPostIdCount" parameterType="Long" resultType="Integer">
+        select count(*) from requests where post_id = #{postId} and status = 'APPROVE'
+    </select>
 </mapper>

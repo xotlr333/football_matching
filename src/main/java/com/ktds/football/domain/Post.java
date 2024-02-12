@@ -19,7 +19,7 @@ public class Post {
     private String skill;
     private LocalDateTime gameDate;
     private String position;
-    private String status;
+    private PostStatus status;
     private LocalDateTime createdAt;
 
 }

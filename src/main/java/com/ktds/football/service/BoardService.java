@@ -1,5 +1,6 @@
 package com.ktds.football.service;
 
+import com.ktds.football.domain.PostStatus;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.domain.Post;
 import com.ktds.football.repository.BoardRepository;
@@ -14,6 +15,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final PageService pageService;
+    private final RequestService requestService;
 
     // private final int PER_PAGE = 15; // 한 페이지당 게시글 갯수
     // private final int PER_SCREEN = 5; // 페이지네이션에서 보여줄 페이지 갯수
@@ -81,4 +83,19 @@ public class BoardService {
     public void delete(Long postId) {
         boardRepository.delete(postId);
     }
+
+	public void checkPeopleCount(Long postId) {
+        Post post = findById(postId);
+        int requestCount = requestService.findApproveByPostIdCount(postId);
+
+        if(post.getStatus() == PostStatus.PROCEEDING && post.getPeople() <= requestCount) {
+            post.setStatus(PostStatus.DEADLINE);
+            update(post);
+        }
+
+        if(post.getStatus() == PostStatus.DEADLINE && post.getPeople() > requestCount) {
+            post.setStatus(PostStatus.PROCEEDING);
+            update(post);
+        }
+	}
 }

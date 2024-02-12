@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <th>인원</th>
-                    <td th:text="${post.people}"></td>
+                    <td th:text="${post.people} + ' (' + ${requestCount} + ')'"></td>
                 </tr>
                 <tr>
                     <th>경기일정</th>
@@ -53,6 +53,7 @@
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">신청</button>
                 </div>
                 <div>
+                    <button type="button" class="btn btn-outline-info" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/request/list/post/{id}(id=${post.id})}'|">용병신청내역</button>
                     <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
                     <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
                     <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>

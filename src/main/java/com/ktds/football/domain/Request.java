@@ -13,7 +13,7 @@ public class Request {
     private Long memberId;
     private Long postId;
     private String position;
-    private String status;
+    private RequestStatus status;
     private LocalDate createdAt;
 
 }

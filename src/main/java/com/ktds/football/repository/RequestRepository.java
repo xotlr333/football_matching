@@ -31,4 +31,20 @@ public class RequestRepository {
     public void delete(Long requestId) {
         sql.delete("Request.delete", requestId);
     }
+
+	public List<RequestResponseDTO> findPageOfPost(RequestRequestDTO requestDTO) {
+        return sql.selectList("Request.findPageOfPost", requestDTO);
+	}
+
+    public int findByPostIdCount(Long postId) {
+        return sql.selectOne("Request.findByPostIdCount", postId);
+    }
+
+    public void refuse(Long id) {
+        sql.update("Request.refuse", id);
+    }
+
+    public int findApproveByPostIdCount(Long postId) {
+        return sql.selectOne("Request.findApproveByPostIdCount", postId);
+    }
 }

@@ -8,7 +8,10 @@
 <body>
 <div class="join_contain">
     <div class="join_box">
-        <img src="/images/logo.png" alt="로고">
+        <div class="title-box">
+            회원가입
+        </div>
+<!--        <img src="/images/logo.png" alt="로고">-->
         <form name="join" action="/user/join" method="post">
             <input type="text" class="form-control input" placeholder="이름" th:name="name" th:id="name">
             <input type="text" class="form-control input" placeholder="아이디" th:name="loginId" th:id="loginId">
@@ -16,6 +19,7 @@
             <input type="password" class="form-control input" placeholder="비밀번호 확인" th:id="confirmPassword">
         </form>
         <button type="button" class="btn btn-secondary button" th:onclick="goSubmit()">회원가입</button>
+        <button type="button" class="btn btn-secondary button" style="margin-top: -15px;" th:onclick="|location.href='@{/user/login}'|">로그인 페이지로 이동</button>
     </div>
 </div>
 
@@ -46,6 +50,13 @@
     .button {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+
+    .title-box {
+        font-size: 30pt;
+        display: flex;
+        width: 501px;
+        justify-content: center;
     }
 </style>
 

@@ -14,4 +14,5 @@ public class RequestResponseDTO {
 	private LocalDate gameDate;
 	private String position;
 	private String status;
+	private String loginId;
 }

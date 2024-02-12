@@ -1,11 +1,14 @@
 package com.ktds.football.controller;
 
 import com.ktds.football.domain.Category;
+import com.ktds.football.domain.PostStatus;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.service.CategoryService;
 import org.springframework.ui.Model;
 import com.ktds.football.domain.Post;
 import com.ktds.football.service.BoardService;
+import com.ktds.football.service.RequestService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final CategoryService categoryService;
+    private final RequestService requestService;
 
     @GetMapping
     public String findPage(
@@ -38,9 +42,11 @@ public class BoardController {
 
         Post findPost = boardService.findById(postId);
         String categoryTitle = categoryService.findById(findPost.getCategoryId());
+        int requestCount = requestService.findApproveByPostIdCount(postId);
 
         model.addAttribute("post", findPost);
         model.addAttribute("category", categoryTitle);
+        model.addAttribute("requestCount", requestCount);
 
         return "board/detail";
     }
@@ -59,9 +65,7 @@ public class BoardController {
     @PostMapping("add")
     public String add(@ModelAttribute Post post) {
 
-        // TODO : 아이디 매핑
-        post.setStatus("진행중");
-
+        post.setStatus(PostStatus.PROCEEDING);
         boardService.add(post);
 
         return "redirect:/board";
