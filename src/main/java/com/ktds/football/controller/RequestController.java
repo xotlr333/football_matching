@@ -71,6 +71,8 @@ public class RequestController {
     public String requestOfPost(
         @PathVariable(name = "postId") Long postId
         , @RequestParam(name = "page", defaultValue = "1") int currentPage
+        , @RequestParam(name = "prepaging", defaultValue = "1") int prePaging
+        , @RequestParam(name = "prepage") String prePage
         , @SessionAttribute(name = "memberInfo", required = false) Member member
         , Model model) {
 
@@ -80,6 +82,8 @@ public class RequestController {
         model.addAttribute("requestList", requestList);
         model.addAttribute("paging", paging);
         model.addAttribute("postId", postId);
+        model.addAttribute("prePage", prePage);
+        model.addAttribute("prePaging", prePaging);
 
         return "request/requestOfPost";
     }

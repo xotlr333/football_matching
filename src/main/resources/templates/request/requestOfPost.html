@@ -64,7 +64,7 @@
       </nav>
 
       <div class="button-container">
-        <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board/detail/{id}(id=${postId})}'|">뒤로</button>
+        <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board/detail/{id}(id=${postId}, prepage=${prePage}, page=${prePaging} )}'|">뒤로</button>
       </div>
 
     </div>
