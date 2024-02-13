@@ -35,4 +35,12 @@
     <delete id="delete" parameterType="Long">
         delete from posts where id = #{postId}
     </delete>
+
+    <select id="findByMemberIdPage" parameterType="com.ktds.football.dto.MyPostPageDTO" resultType="post">
+        select * from posts where member_id = #{memberId} order by id limit #{startPostNum}, #{perPage}
+    </select>
+
+    <select id="findByMemberIdCount" parameterType="Long" resultType="Integer">
+        select count(*) from posts where member_id = #{memberId}
+    </select>
 </mapper>

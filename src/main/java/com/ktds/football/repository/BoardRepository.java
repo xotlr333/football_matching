@@ -1,6 +1,7 @@
 package com.ktds.football.repository;
 
 import com.ktds.football.domain.Post;
+import com.ktds.football.dto.MyPostPageDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -40,5 +41,13 @@ public class BoardRepository {
 
     public void delete(Long postId) {
         sql.delete("Board.delete", postId);
+    }
+
+    public List<Post> findByMemberIdPage(MyPostPageDTO myPostPageDTO) {
+        return sql.selectList("Board.findByMemberIdPage", myPostPageDTO);
+    }
+
+    public int findByMemberIdCount(Long memberId) {
+        return sql.selectOne("Board.findByMemberIdCount", memberId);
     }
 }

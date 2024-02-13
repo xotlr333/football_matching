@@ -29,7 +29,8 @@ public class BoardController {
 
     @GetMapping
     public String findPage(
-            @RequestParam(name = "page", defaultValue = "1") int currentPage, Model model) {
+            @RequestParam(name = "page", defaultValue = "1") int currentPage
+            , Model model) {
 
         List<Post> postList = boardService.findPage(currentPage);
         PageDTO paging = boardService.pagingParam(currentPage);
@@ -105,6 +106,21 @@ public class BoardController {
         boardService.delete(postId);
 
         return "redirect:/board";
+    }
+
+    @GetMapping("mypost")
+    public String myPost(
+            @RequestParam(name = "page", defaultValue = "1") int currentPage
+            , @SessionAttribute(name = "memberInfo") Member member
+            , Model model) {
+
+        List<Post> postList = boardService.findByMemberIdPage(currentPage, member.getId());
+        PageDTO paging = boardService.myPostPagingParam(currentPage, member.getId());
+
+        model.addAttribute("postList", postList);
+        model.addAttribute("paging", paging);
+
+        return "board/mypost";
     }
 
 }
