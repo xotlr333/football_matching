@@ -24,4 +24,8 @@
         delete from members where id = #{id}
     </delete>
 
+    <select id="findByLoginIdCount" parameterType="String" resultType="Integer">
+        select count(*) from members where login_id = #{loginId}
+    </select>
+
 </mapper>

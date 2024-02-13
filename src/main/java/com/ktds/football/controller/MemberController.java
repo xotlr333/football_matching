@@ -1,6 +1,9 @@
 package com.ktds.football.controller;
 
+import java.util.Map;
+
 import com.ktds.football.domain.Member;
+import com.ktds.football.dto.CommonResponseDTO;
 import com.ktds.football.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -72,5 +75,23 @@ public class MemberController {
         return "redirect:/user/login";
     }
 
+    @PostMapping("join/check")
+    @ResponseBody
+    public CommonResponseDTO checkDuplicationLoginId(@RequestBody Map<String, String> req) {
+        System.out.println("loginId : " + req.get("loginId"));
+        int findByLoginIdCount = memberService.findByLoginIdCount(req.get("loginId"));
+
+        CommonResponseDTO result = new CommonResponseDTO();
+
+        if(findByLoginIdCount > 0) {
+            result.setCode(0);
+            result.setText("이미 존재하는 아이디입니다.");
+            return result;
+        }
+
+        result.setCode(1);
+        return result;
+
+    }
 
 }

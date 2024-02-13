@@ -39,4 +39,8 @@ public class MemberService {
     public Member findById(Long memberId) {
 		return memberRepository.findById(memberId);
     }
+
+	public int findByLoginIdCount(String loginId) {
+		return memberRepository.findByLoginIdCount(loginId);
+	}
 }

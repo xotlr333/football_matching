@@ -32,4 +32,8 @@ public class MemberRepository {
     public Member findById(Long id) {
         return sql.selectOne("Member.findById", id);
     }
+
+	public int findByLoginIdCount(String loginId) {
+		return sql.selectOne("Member.findByLoginIdCount", loginId);
+	}
 }
