@@ -23,7 +23,7 @@
           <th width="100">거절</th>
         </tr>
 
-        <th:block  th:each="request : ${requestList}" th:if="${requestList != null}">
+        <th:block  th:each="request : ${requestList}" th:if="${#lists.size(requestList) > 0}">
           <tr>
             <td align="center" th:text="${request.loginId}"></td>
             <td align="center" th:text="${request.position}"></td>
@@ -33,7 +33,9 @@
           </tr>
         </th:block>
       </table>
-      <div th:replace="~{noData :: noData('신청 내역')}" th:if="${requestList == null}"></div>
+      <div th:if="${#lists.size(requestList) <= 0}">
+        <div th:replace="~{noData :: noData('신청 내역')}"></div>
+      </div>
 
       <!--페이지네이션-->
       <nav aria-label="Page navigation example" class="nav-container">

@@ -16,12 +16,12 @@
         <!--테이블-->
         <div class="table-container">
             <table class="table table-hover">
-                <tr align="center" style="pointer-events: none;">
+                <tr align="center" style="pointer-events: none;" >
                     <th>제목</th>
                     <th width="200">경기날짜</th>
                 </tr>
 
-                <th:block  th:each="post : ${postList}" th:if="${postList != null}">
+                <th:block  th:each="post : ${postList}" th:if="${#lists.size(postList) > 0}">
                 <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id})}'|">
                     <td>
                         <span class="d-block text-truncate" style="max-width: 500px;" th:text="${post.title}"></span>
@@ -30,7 +30,10 @@
                 </tr>
                 </th:block>
             </table>
-            <div th:replace="~{noData :: noData('게시글')}" th:if="${postList == null}"></div>
+
+            <div th:if="${#lists.size(postList) <= 0}">
+                <div th:replace="~{noData :: noData('게시글')}"></div>
+            </div>
 
             <!--페이지네이션-->
             <nav aria-label="Page navigation example" class="nav-container">
