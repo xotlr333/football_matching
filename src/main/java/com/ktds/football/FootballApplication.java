@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FootballApplication {
 
-	// TODO : 비밀번호 암호화
+	// TODO : 비밀번호 암호화 (O)
 	// TODO : 문의하기
 	// TODO : 검색
 	// TODO : 회원가입 시 아이디 중복 체크 (O)

@@ -2,6 +2,7 @@ package com.ktds.football.controller;
 
 import java.util.Map;
 
+import com.ktds.football.service.ShaUtil;
 import com.ktds.football.domain.Member;
 import com.ktds.football.dto.CommonResponseDTO;
 import com.ktds.football.service.MemberService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
+    private final ShaUtil shaUtil;
 
     @GetMapping("login")
     public String login(){
@@ -44,7 +46,7 @@ public class MemberController {
             return false;
         }
 
-        if(findMember.getPassword().equals(member.getPassword())) {
+        if(findMember.getPassword().equals(shaUtil.sha256Encode(member.getPassword()))) {
             return true;
         }
 
@@ -59,7 +61,8 @@ public class MemberController {
     @PostMapping("join")
     public String join(@ModelAttribute Member member) {
 
-        // TODO : 아이디 중복 체크
+        member.setPassword(shaUtil.sha256Encode(member.getPassword()));
+
         int result = memberService.join(member);
         return "redirect:/user/login";
     }
