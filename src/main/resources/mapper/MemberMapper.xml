@@ -23,4 +23,5 @@
     <delete id="delete" parameterType="Long">
         delete from members where id = #{id}
     </delete>
+
 </mapper>

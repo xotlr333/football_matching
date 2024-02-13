@@ -21,7 +21,7 @@
                     <th width="200">경기날짜</th>
                 </tr>
 
-                <th:block  th:each="post : ${postList}">
+                <th:block  th:each="post : ${postList}" th:if="${postList != null}">
                 <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id})}'|">
                     <td>
                         <span class="d-block text-truncate" style="max-width: 500px;" th:text="${post.title}"></span>
@@ -30,6 +30,7 @@
                 </tr>
                 </th:block>
             </table>
+            <div th:replace="~{noData :: noData('게시글')}" th:if="${postList == null}"></div>
 
             <!--페이지네이션-->
             <nav aria-label="Page navigation example" class="nav-container">

@@ -1,9 +1,11 @@
 package com.ktds.football.controller;
 
 import com.ktds.football.domain.Category;
+import com.ktds.football.domain.Member;
 import com.ktds.football.domain.PostStatus;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.service.CategoryService;
+import com.ktds.football.service.MemberService;
 import org.springframework.ui.Model;
 import com.ktds.football.domain.Post;
 import com.ktds.football.service.BoardService;
@@ -23,6 +25,7 @@ public class BoardController {
     private final BoardService boardService;
     private final CategoryService categoryService;
     private final RequestService requestService;
+    private final MemberService memberService;
 
     @GetMapping
     public String findPage(
@@ -43,10 +46,12 @@ public class BoardController {
         Post findPost = boardService.findById(postId);
         String categoryTitle = categoryService.findById(findPost.getCategoryId());
         int requestCount = requestService.findApproveByPostIdCount(postId);
+        Member member = memberService.findById(findPost.getMemberId());
 
         model.addAttribute("post", findPost);
         model.addAttribute("category", categoryTitle);
         model.addAttribute("requestCount", requestCount);
+        model.addAttribute("loginId", member.getLoginId());
 
         return "board/detail";
     }

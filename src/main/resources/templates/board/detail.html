@@ -21,8 +21,12 @@
                     <td th:text="${category}"></td>
                 </tr>
                 <tr>
-                    <th width="180px">주소</th>
+                    <th>주소</th>
                     <td th:text="${post.address}"></td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td th:text="${loginId}"></td>
                 </tr>
                 <tr>
                     <th>인원</th>
@@ -44,7 +48,7 @@
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">추가정보 및 팀소개</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" style="resize : none;" rows="10" th:text="${post.content}" readonly></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" style="resize : none;" rows="8" th:text="${post.content}" readonly></textarea>
             </div>
 
 

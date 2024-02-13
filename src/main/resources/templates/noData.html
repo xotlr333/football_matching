@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>데이터 없음</title>
+</head>
+<body>
+<div th:fragment="noData(text)">
+    <!--데이터 없을 때 나오는 페이지-->
+    <div class="alert alert-secondary" role="alert">
+        <div th:text="${text} + '이 없습니다.'"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+
+    </script>
+    <style>
+
+    </style>
+</div>
+</body>
+
+</html>
