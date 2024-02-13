@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="box">
-        <div th:replace="~{sideMenu :: sideMenu}"></div>
+        <div th:replace="~{sideMenu :: sideMenu('board')}"></div>
 
         <div class="content-container">
             <form class="row g-3 needs-validation" th:action="@{/board/update/{id}(id=${post.id})}" method="post">

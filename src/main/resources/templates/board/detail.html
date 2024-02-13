@@ -9,7 +9,12 @@
 <body>
 <div class="container">
     <div class="box">
-        <div th:replace="~{sideMenu :: sideMenu}"></div>
+        <th:block th:if="${#strings.equals(prePage, '/mypost')}">
+            <div th:replace="~{sideMenu :: sideMenu('mypost')}"></div>
+        </th:block>
+        <th:block th:unless="${#strings.equals(prePage, '/mypost')}">
+            <div th:replace="~{sideMenu :: sideMenu('board')}"></div>
+        </th:block>
 
         <div class="content-container">
             <div class="title-container" >
@@ -63,7 +68,7 @@
                     <button type="button" class="btn btn-outline-secondary" th:if="${member.id == post.memberId} and ${#strings.equals(post.status, 'DEADLINE')}" th:onclick="changeStatus([[${post.id}]])">마감철회처리</button>
                     <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
                     <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
-                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board{id}(id=${prePage}, page=${page})}'|">목록</button>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board{pre}(pre=${prePage}, page=${page})}'|">목록</button>
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
     <title>사이드메뉴</title>
 </head>
 <body>
-<div th:fragment="sideMenu">
+<div th:fragment="sideMenu(pageName)">
     <!--사이드 메뉴-->
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 260px; height: 100%; border-radius: 20px;">
         <a href="/board" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -16,25 +16,41 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li>
-                <a href="/board" class="nav-link text-white">
+                <a href="/board" class="nav-link text-white active" th:if="${#strings.equals(pageName, 'board')}">
+                    <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                    용병구하기
+                </a>
+                <a href="/board" class="nav-link text-white" th:unless="${#strings.equals(pageName, 'board')}">
                     <svg class="bi pe-none me-2" width="16" height="16"></svg>
                     용병구하기
                 </a>
             </li>
             <li>
-                <a href="/board/mypost" class="nav-link text-white">
+                <a href="/board/mypost" class="nav-link text-white active" th:if="${#strings.equals(pageName, 'mypost')}">
+                    <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                    내 게시글
+                </a>
+                <a href="/board/mypost" class="nav-link text-white" th:unless="${#strings.equals(pageName, 'mypost')}">
                     <svg class="bi pe-none me-2" width="16" height="16"></svg>
                     내 게시글
                 </a>
             </li>
             <li>
-                <a href="/request" class="nav-link text-white">
+                <a href="/request" class="nav-link text-white active" th:if="${#strings.equals(pageName, 'request')}">
+                    <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                    신청내역
+                </a>
+                <a href="/request" class="nav-link text-white" th:unless="${#strings.equals(pageName, 'request')}">
                     <svg class="bi pe-none me-2" width="16" height="16"></svg>
                     신청내역
                 </a>
             </li>
             <li>
-                <a href="/mypage" class="nav-link text-white">
+                <a href="/mypage" class="nav-link text-white active" th:if="${#strings.equals(pageName, 'mypage')}">
+                    <svg class="bi pe-none me-2" width="16" height="16"></svg>
+                    마이페이지
+                </a>
+                <a href="/mypage" class="nav-link text-white" th:unless="${#strings.equals(pageName, 'mypage')}">
                     <svg class="bi pe-none me-2" width="16" height="16"></svg>
                     마이페이지
                 </a>
