@@ -5,6 +5,7 @@ import com.ktds.football.domain.Member;
 import com.ktds.football.domain.PostStatus;
 import com.ktds.football.dto.CommonResponseDTO;
 import com.ktds.football.dto.PageDTO;
+import com.ktds.football.dto.PostResponseDTO;
 import com.ktds.football.service.CategoryService;
 import com.ktds.football.service.MemberService;
 import org.springframework.ui.Model;
@@ -31,13 +32,17 @@ public class BoardController {
     @GetMapping
     public String findPage(
             @RequestParam(name = "page", defaultValue = "1") int currentPage
+            , @RequestParam(name = "category", defaultValue = "0") int categoryId
             , Model model) {
 
-        List<Post> postList = boardService.findPage(currentPage);
-        PageDTO paging = boardService.pagingParam(currentPage);
+        List<PostResponseDTO> postList = boardService.findPage(currentPage, categoryId);
+        PageDTO paging = boardService.pagingParam(currentPage, categoryId);
+        List<Category> categoryList = categoryService.findAll();
 
         model.addAttribute("postList", postList);
         model.addAttribute("paging", paging);
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("currentCategory", categoryId);
 
         return "board/list";
     }

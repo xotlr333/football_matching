@@ -4,6 +4,7 @@ import com.ktds.football.domain.PostStatus;
 import com.ktds.football.dto.MyPostPageDTO;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.domain.Post;
+import com.ktds.football.dto.PostResponseDTO;
 import com.ktds.football.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,15 +28,20 @@ public class BoardService {
         return boardRepository.findById(postId);
     }
 
-    public List<Post> findPage(int currentPage) {
+    public List<PostResponseDTO> findPage(int currentPage, int categoryId) {
 
-        return boardRepository.findPage(pageService.findStartPage(currentPage));
+        Map<String, Integer> map = pageService.findStartPage(currentPage);
+        map.put("categoryId", categoryId);
+
+//        return boardRepository.findPage(pageService.findStartPage(currentPage));
+        return boardRepository.findPage(map);
 
     }
 
-    public PageDTO pagingParam(int currentPage) {
+    public PageDTO pagingParam(int currentPage, int categoryId) {
 
-        int totalPostCount = findAllCount();
+//        int totalPostCount = findAllCount();
+        int totalPostCount = boardRepository.findByCategoryIdCount(categoryId);
 
         return pageService.pagingParam(currentPage, totalPostCount);
     }

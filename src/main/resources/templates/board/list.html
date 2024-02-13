@@ -18,14 +18,16 @@
             <table class="table table-hover">
                 <tr align="center" style="pointer-events: none;" >
                     <th>제목</th>
+                    <th width="120">지역</th>
                     <th width="200">경기날짜</th>
                 </tr>
 
                 <th:block  th:each="post : ${postList}" th:if="${#lists.size(postList) > 0}">
                 <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id}, page=${paging.currentPage}, prepage='')}'|">
                     <td>
-                        <span class="d-block text-truncate" style="max-width: 500px;" th:text="${post.title}"></span>
+                        <span class="d-block text-truncate" style="max-width: 410px;" th:text="${post.title}"></span>
                     </td>
+                    <td align="center" th:text="${post.categoryTitle}"></td>
                     <td align="center" th:text="${#temporals.format(post.gameDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
                 </th:block>
@@ -39,7 +41,7 @@
             <nav aria-label="Page navigation example" class="nav-container">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" th:if="${paging.currentPage != paging.startPage}" th:href="@{/board(page=${paging.currentPage}-1)}" aria-label="Previous">
+                        <a class="page-link" th:if="${paging.currentPage != paging.startPage}" th:href="@{/board(page=${paging.currentPage}-1,category=${currentCategory})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                         <span class="page-link disabled" th:unless="${paging.currentPage != paging.startPage}" aria-label="Previous">
@@ -47,11 +49,11 @@
                         </span>
                     </li>
                     <th:block th:each="num : ${#numbers.sequence(paging.startPage,paging.endPage)}">
-                        <li th:if="${paging.currentPage == num}" class="page-item active"><a class="page-link" th:href="@{/board(page=${num})}" th:text="${num}"></a></li>
-                        <li th:unless="${paging.currentPage == num}" class="page-item"><a class="page-link" th:href="@{/board(page=${num})}" th:text="${num}"></a></li>
+                        <li th:if="${paging.currentPage == num}" class="page-item active"><a class="page-link" th:href="@{/board(page=${num},category=${currentCategory})}" th:text="${num}"></a></li>
+                        <li th:unless="${paging.currentPage == num}" class="page-item"><a class="page-link" th:href="@{/board(page=${num},category=${currentCategory})}" th:text="${num}"></a></li>
                     </th:block>
                     <li class="page-item">
-                        <a class="page-link" th:if="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1)}" aria-label="Next">
+                        <a class="page-link" th:if="${paging.currentPage != paging.endPage}" th:href="@{/board(page=${paging.currentPage}+1,category=${currentCategory})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                         <a class="page-link disabled" th:unless="${paging.currentPage != paging.endPage}" aria-label="Next">
@@ -64,6 +66,16 @@
             <div class="button-container">
                 <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board/add}'|">
                 <i class="bi bi-plus-lg"></i>글생성</button>
+            </div>
+
+            <div class="select-container">
+                <select class="form-select" id="category" th:onchange="changeCategory()">
+                    <option th:value="0" >전체</option>
+                    <option th:each="category : ${categoryList}"
+                            th:selected="${category.id == currentCategory}"
+                            th:value="${category.id}"
+                            th:text="${category.title}"></option>
+                </select>
             </div>
         </div>
     </div>
@@ -112,6 +124,21 @@
         transform: translate(-50%, -50%);
     }
 
+    .select-container {
+        position: absolute;
+        bottom: 64px;
+        right: 16px;
+        width: 120px;
+    }
+
 </style>
+
+<script>
+    const changeCategory = () => {
+        const categoryId = document.getElementById("category").value;
+
+        location.href = "/board?category=" + categoryId;
+    }
+</script>
 
 </html>

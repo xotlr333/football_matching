@@ -2,6 +2,7 @@ package com.ktds.football.repository;
 
 import com.ktds.football.domain.Post;
 import com.ktds.football.dto.MyPostPageDTO;
+import com.ktds.football.dto.PostResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class BoardRepository {
         return sql.selectOne("Board.findById", postId);
     }
 
-    public List<Post> findPage(Map<String, Integer> pageMap) {
+    public List<PostResponseDTO> findPage(Map<String, Integer> pageMap) {
         return sql.selectList("Board.findPage", pageMap);
     }
 
@@ -49,5 +50,9 @@ public class BoardRepository {
 
     public int findByMemberIdCount(Long memberId) {
         return sql.selectOne("Board.findByMemberIdCount", memberId);
+    }
+
+    public int findByCategoryIdCount(int categoryId) {
+        return sql.selectOne("Board.findByCategoryIdCount", categoryId);
     }
 }

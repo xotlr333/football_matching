@@ -11,12 +11,25 @@
         select * from posts where id = #{postId} order by id
     </select>
 
-    <select id="findPage" parameterType="java.util.Map" resultType="post">
-        select * from posts where status != 'DEADLINE' order by id limit #{startPostNum}, #{perPage}
+    <select id="findPage" parameterType="java.util.Map" resultType="com.ktds.football.dto.PostResponseDTO">
+        select p.*, c.title as 'categoryTitle' from posts p
+        join categories c on p.category_id = c.id
+        where status != 'DEADLINE'
+        <if test='categoryId != 0'>
+            and p.category_id = #{categoryId}
+        </if>
+        order by id limit #{startPostNum}, #{perPage}
     </select>
 
     <select id="findAllCount" resultType="Integer">
         select count(*) from posts where status != 'DEADLINE'
+    </select>
+
+    <select id="findByCategoryIdCount" parameterType="Integer" resultType="Integer">
+        select count(*) from posts where status != 'DEADLINE'
+        <if test='categoryId != 0'>
+            and category_id = #{categoryId}
+        </if>
     </select>
 
     <insert id="add" parameterType="post">
