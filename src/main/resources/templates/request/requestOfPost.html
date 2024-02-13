@@ -12,7 +12,13 @@
 
 <div class="container">
   <div class="box">
-    <div th:replace="~{sideMenu :: sideMenu('board')}"></div>
+<!--    <div th:replace="~{sideMenu :: sideMenu('board')}"></div>-->
+    <th:block th:if="${#strings.equals(prePage, '/mypost')}">
+      <div th:replace="~{sideMenu :: sideMenu('mypost')}"></div>
+    </th:block>
+    <th:block th:unless="${#strings.equals(prePage, '/mypost')}">
+      <div th:replace="~{sideMenu :: sideMenu('board')}"></div>
+    </th:block>
 
     <!--테이블-->
     <div class="table-container">
