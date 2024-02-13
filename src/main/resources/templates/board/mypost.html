@@ -19,14 +19,19 @@
                 <tr align="center" style="pointer-events: none;" >
                     <th>제목</th>
                     <th width="200">경기날짜</th>
+                    <th width="100">상태</th>
                 </tr>
 
                 <th:block  th:each="post : ${postList}" th:if="${#lists.size(postList) > 0}">
-                    <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id})}'|">
+                    <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id}, page=${paging.currentPage}, prepage='/mypost')}'|">
                         <td>
                             <span class="d-block text-truncate" style="max-width: 500px;" th:text="${post.title}"></span>
                         </td>
                         <td align="center" th:text="${#temporals.format(post.gameDate, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td align="center">
+                            <div class="text-primary" th:if="${#strings.equals(post.status, 'PROCEEDING')}" th:text="진행중">진행중</div>
+                            <div class="text-danger" th:if="${#strings.equals(post.status, 'DEADLINE')}"  th:text="마감">마감</div>
+                        </td>
                     </tr>
                 </th:block>
             </table>

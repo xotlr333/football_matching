@@ -22,7 +22,7 @@
                 </tr>
 
                 <th:block  th:each="post : ${postList}" th:if="${#lists.size(postList) > 0}">
-                <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id})}'|">
+                <tr th:onclick="|location.href='@{/board/detail/{id}(id = ${post.id}, page=${paging.currentPage}, prepage='')}'|">
                     <td>
                         <span class="d-block text-truncate" style="max-width: 500px;" th:text="${post.title}"></span>
                     </td>

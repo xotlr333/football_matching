@@ -12,11 +12,11 @@
     </select>
 
     <select id="findPage" parameterType="java.util.Map" resultType="post">
-        select * from posts order by id limit #{startPostNum}, #{perPage}
+        select * from posts where status != 'DEADLINE' order by id limit #{startPostNum}, #{perPage}
     </select>
 
     <select id="findAllCount" resultType="Integer">
-        select count(*) from posts
+        select count(*) from posts where status != 'DEADLINE'
     </select>
 
     <insert id="add" parameterType="post">

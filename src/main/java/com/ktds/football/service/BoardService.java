@@ -90,4 +90,21 @@ public class BoardService {
 
         return pageService.pagingParam(currentPage, totalPostCount);
     }
+
+    public String changeStatus(Long postId) {
+        Post post = boardRepository.findById(postId);
+
+        // status == PROCEEDING 일 경우
+        if(post.getStatus() == PostStatus.PROCEEDING) {
+            post.setStatus(PostStatus.DEADLINE);
+            boardRepository.update(post);
+            return "마감";
+        }
+
+        // status == DEADLINE 일 경우
+        post.setStatus(PostStatus.PROCEEDING);
+        boardRepository.update(post);
+        return "진행중";
+
+    }
 }

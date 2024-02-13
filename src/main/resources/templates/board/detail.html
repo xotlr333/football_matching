@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>상세페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
@@ -58,9 +59,11 @@
                 </div>
                 <div>
                     <button type="button" class="btn btn-outline-info" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/request/list/post/{id}(id=${post.id})}'|">용병신청내역</button>
+                    <button type="button" class="btn btn-outline-secondary" th:if="${member.id == post.memberId} and ${#strings.equals(post.status, 'PROCEEDING')}" th:onclick="changeStatus([[${post.id}]])">마감처리</button>
+                    <button type="button" class="btn btn-outline-secondary" th:if="${member.id == post.memberId} and ${#strings.equals(post.status, 'DEADLINE')}" th:onclick="changeStatus([[${post.id}]])">마감철회처리</button>
                     <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
                     <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
-                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board}'|">목록</button>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board{id}(id=${prePage}, page=${page})}'|">목록</button>
                 </div>
             </div>
 
@@ -126,5 +129,24 @@
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    const changeStatus = (postId) => {
+        $.ajax({
+            type: "get",
+            url: "/board/change/status?postId=" + postId,
+            async : false,
+            success: function(result) {
+                if (result.code === 1) {
+                    alert(result.text);
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                console.error(error)
+                alert("일시적으로 오류가 발생했습니다. \n관리자에게 문의하세요.");
+            }
+        });
+    }
+
 </script>
 </html>

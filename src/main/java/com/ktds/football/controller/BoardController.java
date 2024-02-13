@@ -3,6 +3,7 @@ package com.ktds.football.controller;
 import com.ktds.football.domain.Category;
 import com.ktds.football.domain.Member;
 import com.ktds.football.domain.PostStatus;
+import com.ktds.football.dto.CommonResponseDTO;
 import com.ktds.football.dto.PageDTO;
 import com.ktds.football.service.CategoryService;
 import com.ktds.football.service.MemberService;
@@ -42,7 +43,11 @@ public class BoardController {
     }
 
     @GetMapping("detail/{postId}")
-    public String findById(@PathVariable(name = "postId") Long postId, Model model) {
+    public String findById(
+            @PathVariable(name = "postId") Long postId
+            , @RequestParam(name = "page", defaultValue = "1") int currentPage
+            , @RequestParam(name = "prepage") String prePage
+            , Model model) {
 
         Post findPost = boardService.findById(postId);
         String categoryTitle = categoryService.findById(findPost.getCategoryId());
@@ -53,6 +58,8 @@ public class BoardController {
         model.addAttribute("category", categoryTitle);
         model.addAttribute("requestCount", requestCount);
         model.addAttribute("loginId", member.getLoginId());
+        model.addAttribute("page", currentPage);
+        model.addAttribute("prePage", prePage);
 
         return "board/detail";
     }
@@ -121,6 +128,20 @@ public class BoardController {
         model.addAttribute("paging", paging);
 
         return "board/mypost";
+    }
+
+    @GetMapping("change/status")
+    @ResponseBody
+    public CommonResponseDTO changeStatus(@RequestParam(name = "postId") Long postId) {
+
+        String changedStatus = boardService.changeStatus(postId);
+
+        CommonResponseDTO result = new CommonResponseDTO();
+        result.setCode(1);
+        result.setText(changedStatus + "로 변경되었습니다.");
+
+        return result;
+
     }
 
 }
