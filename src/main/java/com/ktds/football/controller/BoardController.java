@@ -90,26 +90,34 @@ public class BoardController {
     }
 
     @GetMapping("update/{postId}")
-    public String update(@PathVariable(name = "postId") Long postId, Model model) {
+    public String update(
+            @PathVariable(name = "postId") Long postId
+            , @RequestParam(name = "page") int currentPage
+            , @RequestParam(name = "prepage") String prePage
+            , Model model) {
 
         Post findPost = boardService.findById(postId);
         List<Category> categoryList = categoryService.findAll();
 
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("post", findPost);
+        model.addAttribute("page", currentPage);
+        model.addAttribute("prepage", prePage);
 
         return "board/update";
     }
 
     @PostMapping("update/{postId}")
     public String update(
-            @PathVariable(name = "postId") Long postId,
-            @ModelAttribute Post post) {
+            @PathVariable(name = "postId") Long postId
+            , @RequestParam(name = "page") int currentPage
+            , @RequestParam(name = "prepage") String prePage
+            , @ModelAttribute Post post) {
 
         boardService.update(post);
 
 
-        return "redirect:/board/detail/" + postId;
+        return "redirect:/board/detail/" + postId + "?page=" + currentPage + "&prepage=" + prePage;
     }
 
     @GetMapping("delete/{postId}")

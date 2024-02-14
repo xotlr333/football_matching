@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+	private final ShaUtil shaUtil;
 
     public int join(Member member) {
         return memberRepository.save(member);
@@ -24,10 +25,14 @@ public class MemberService {
 
 		Member member = memberRepository.findByLoginId(loginId);
 
-		return member.getPassword().equals(prePassword);
+		return member.getPassword().equals(shaUtil.sha256Encode(prePassword));
 	}
 
 	public void updatePassword(PasswordDTO passwordDTO) {
+		String changedPassword = passwordDTO.getChangePassword();
+
+		passwordDTO.setChangePassword(shaUtil.sha256Encode(changedPassword));
+
 		memberRepository.updatePassword(passwordDTO);
 	}
 

@@ -66,7 +66,7 @@
                     <button type="button" class="btn btn-outline-info" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/request/list/post/{id}(id=${post.id}, prepaging=${page}, prepage=${prePage})}'|">용병신청내역</button>
                     <button type="button" class="btn btn-outline-secondary" th:if="${member.id == post.memberId} and ${#strings.equals(post.status, 'PROCEEDING')}" th:onclick="changeStatus([[${post.id}]])">마감처리</button>
                     <button type="button" class="btn btn-outline-secondary" th:if="${member.id == post.memberId} and ${#strings.equals(post.status, 'DEADLINE')}" th:onclick="changeStatus([[${post.id}]])">마감철회처리</button>
-                    <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id})}'|">수정</button>
+                    <button type="button" class="btn btn-outline-success" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/update/{id}(id=${post.id}, page=${page}, prepage=${prePage})}'|">수정</button>
                     <button type="button" class="btn btn-outline-danger" th:if="${member.id == post.memberId}" th:onclick="|location.href='@{/board/delete/{id}(id=${post.id})}'|">삭제</button>
                     <button type="button" class="btn btn-outline-secondary" th:onclick="|location.href='@{/board{pre}(pre=${prePage}, page=${page})}'|">목록</button>
                 </div>
