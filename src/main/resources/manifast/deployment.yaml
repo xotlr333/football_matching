@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot
-          image: xotlr333/ktdsfootball:v3
+          image: xotlr333/ktdsfootball:v5
           ports:
             - containerPort: 8080
               name: springboot-port
