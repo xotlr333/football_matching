@@ -4,7 +4,7 @@ metadata:
   name: football-service
 spec:
   selector:
-    app: football
+    app: springboot
   ports:
     - protocol: TCP
       port: 8080
